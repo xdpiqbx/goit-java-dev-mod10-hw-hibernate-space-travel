@@ -1,0 +1,18 @@
+CREATE TABLE client(
+    id IDENTITY PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    CHECK (CHAR_LENGTH(name) > 3 AND CHAR_LENGTH(name) < 201)
+);
+
+CREATE TABLE planet(
+    id VARCHAR(504) NOT NULL
+    GENERATED ALWAYS AS
+    CONCAT(
+         UPPER(NAME),
+         CAST(ROUND(RAND()*10000) AS INT)
+    ),
+    name VARCHAR(500) NOT NULL UNIQUE,
+    CHECK (CHAR_LENGTH(name) > 0 AND CHAR_LENGTH(name) < 501)
+);
+
+-- CREATE TABLE ticket()
