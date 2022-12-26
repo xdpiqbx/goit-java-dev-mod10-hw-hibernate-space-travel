@@ -1,7 +1,6 @@
 package com.dpiqb.client;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
@@ -13,6 +12,5 @@ public class Client {
   @Column(name = "id")
   private long id;
   @Column(name = "name")
-  @Size(min = 2, max = 200)
   private String name;
 }

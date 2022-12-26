@@ -3,10 +3,20 @@
  */
 package com.dpiqb;
 
+import com.dpiqb.client.Client;
 import com.dpiqb.db.DatabaseMigrateService;
+import com.dpiqb.db.HibernateUtil;
+import org.hibernate.Session;
+
+import java.util.List;
 
 public class App {
   public static void main(String[] args) {
     DatabaseMigrateService.migrateDatabase();
+    HibernateUtil util = HibernateUtil.getInstance();
+    Session session = util.getSessionFactory().openSession();
+    List<Client> passengers = session.createQuery("FROM Client", Client.class).list();
+    System.out.println(passengers);
+    session.close();
   }
 }
