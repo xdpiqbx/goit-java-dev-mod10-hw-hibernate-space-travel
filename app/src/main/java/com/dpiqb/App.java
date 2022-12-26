@@ -3,12 +3,10 @@
  */
 package com.dpiqb;
 
-public class App {
-  public String getGreeting() {
-    return "Hello World!";
-  }
+import com.dpiqb.db.DatabaseMigrateService;
 
+public class App {
   public static void main(String[] args) {
-    System.out.println(new App().getGreeting());
+    DatabaseMigrateService.migrateDatabase();
   }
 }
