@@ -7,6 +7,7 @@
  */
 
 plugins {
+    id 'java'
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
 }
@@ -44,9 +45,16 @@ application {
     mainClass = 'com.dpiqb.App'
 }
 
-tasks.named('test') {
-    // Use JUnit Platform for unit tests.
+test {
     useJUnitPlatform()
+}
+
+tasks.withType(Test).configureEach {
+    testLogging {
+        exceptionFormat "full"
+        events "started", "skipped", "passed", "failed"
+        showStandardStreams true
+    }
 }
 
 compileJava {

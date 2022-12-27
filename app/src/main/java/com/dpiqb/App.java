@@ -4,6 +4,7 @@
 package com.dpiqb;
 
 import com.dpiqb.client.Client;
+import com.dpiqb.client.ClientCrudService;
 import com.dpiqb.db.DatabaseMigrateService;
 import com.dpiqb.db.HibernateUtil;
 import org.hibernate.Session;
@@ -15,8 +16,16 @@ public class App {
     DatabaseMigrateService.migrateDatabase();
     HibernateUtil util = HibernateUtil.getInstance();
     Session session = util.getSessionFactory().openSession();
-    List<Client> passengers = session.createQuery("FROM Client", Client.class).list();
-    System.out.println(passengers);
+
+    ClientCrudService clientCrudService = new ClientCrudService();
+    System.out.println("clientCrudService.readAll() = " + clientCrudService.readAll());
+    clientCrudService.deleteById(1L);
+    System.out.println("clientCrudService.readAll() = " + clientCrudService.readAll());
+
+
+//    Client client = new Client();
+//    client.setName("Jonathan Show");
+//    clientCrudService.create(client);
     session.close();
   }
 }
