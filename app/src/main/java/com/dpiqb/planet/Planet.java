@@ -3,8 +3,8 @@ package com.dpiqb.planet;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
 @Table(name = "planet")
+@Entity
 @Data
 public class Planet {
     @Id

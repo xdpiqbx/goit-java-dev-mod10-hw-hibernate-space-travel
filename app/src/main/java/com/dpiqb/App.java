@@ -7,6 +7,7 @@ import com.dpiqb.client.Client;
 import com.dpiqb.client.ClientCrudService;
 import com.dpiqb.db.DatabaseMigrateService;
 import com.dpiqb.db.HibernateUtil;
+import com.dpiqb.ticket.Ticket;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -18,14 +19,10 @@ public class App {
     Session session = util.getSessionFactory().openSession();
 
     ClientCrudService clientCrudService = new ClientCrudService();
-    System.out.println("clientCrudService.readAll() = " + clientCrudService.readAll());
+    System.out.println("clientCrudService.readAll() = " + clientCrudService.readAll().size());
     clientCrudService.deleteById(1L);
-    System.out.println("clientCrudService.readAll() = " + clientCrudService.readAll());
+    System.out.println("clientCrudService.readAll() = " + clientCrudService.readAll().size());
 
-
-//    Client client = new Client();
-//    client.setName("Jonathan Show");
-//    clientCrudService.create(client);
     session.close();
   }
 }

@@ -3,7 +3,6 @@ package com.dpiqb.client;
 import com.dpiqb.db.DatabaseMigrateServiceForTest;
 import com.dpiqb.db.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.junit.jupiter.api.*;
 
@@ -27,7 +26,7 @@ public class ClientCrudServiceTest {
   @Test
   public void createTest(){
     // to create  new client we need just name
-    String actualClientName = "Jonathan Show";
+    String actualClientName = "Elisabeth Shaw";
 
     Client actualClient = new Client();
     actualClient.setName(actualClientName);

@@ -18,6 +18,7 @@ CREATE TABLE ticket(
   to_planet_id VARCHAR(504) NOT NULL,
   FOREIGN KEY (client_id)
     REFERENCES client(id)
+    ON DELETE CASCADE
 );
 
 --CREATE TABLE planet(
