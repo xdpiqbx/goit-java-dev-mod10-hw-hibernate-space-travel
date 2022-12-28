@@ -3,8 +3,6 @@ package com.dpiqb.db;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.FlywayException;
 
-import java.util.Arrays;
-
 public class DatabaseMigrateService {
   public static void migrateDatabase(){
     Flyway flyway = Flyway

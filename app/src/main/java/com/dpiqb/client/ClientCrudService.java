@@ -41,11 +41,12 @@ public class ClientCrudService {
 //  Delete
   public void deleteById(long id){
     try(Session session = HibernateUtil.getInstance().getSessionFactory().openSession()){
-      Client client = session.get(Client.class, id);
-      session.remove(client);
+      Transaction transaction = session.beginTransaction();
+      session.remove(session.get(Client.class, id));
+      transaction.commit();
     }
   }
-  public List<Client> readAll (){
+  public List<Client> readAllClients (){
     try(Session session = HibernateUtil.getInstance().getSessionFactory().openSession()){
       return session.createQuery("from Client", Client.class).list();
     }

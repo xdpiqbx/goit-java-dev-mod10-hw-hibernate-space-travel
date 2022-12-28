@@ -6,23 +6,32 @@ package com.dpiqb;
 import com.dpiqb.client.Client;
 import com.dpiqb.client.ClientCrudService;
 import com.dpiqb.db.DatabaseMigrateService;
-import com.dpiqb.db.HibernateUtil;
-import com.dpiqb.ticket.Ticket;
-import org.hibernate.Session;
+import com.dpiqb.planet.Planet;
+import com.dpiqb.planet.PlanetCrudService;
 
 import java.util.List;
 
 public class App {
   public static void main(String[] args) {
+
+    // All CRUD in tests.
+
     DatabaseMigrateService.migrateDatabase();
-    HibernateUtil util = HibernateUtil.getInstance();
-    Session session = util.getSessionFactory().openSession();
+
+    System.out.println("\n ============ All Clients ============ ");
 
     ClientCrudService clientCrudService = new ClientCrudService();
-    System.out.println("clientCrudService.readAll() = " + clientCrudService.readAll().size());
-    clientCrudService.deleteById(1L);
-    System.out.println("clientCrudService.readAll() = " + clientCrudService.readAll().size());
+    List<Client> clients = clientCrudService.readAllClients();
+    for (Client client : clients) {
+      System.out.println(client);
+    }
 
-    session.close();
+    System.out.println("\n ============ All Planets ============ ");
+
+    PlanetCrudService planetCrudService = new PlanetCrudService();
+    List<Planet> planets = planetCrudService.readAllPlanets();
+    for (Planet planet : planets) {
+      System.out.println(planet);
+    }
   }
 }

@@ -1,11 +1,7 @@
 package com.dpiqb.client;
 
-import com.dpiqb.ticket.Ticket;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.ToString;
-
-import java.util.List;
 
 @Table(name = "client")
 @Entity
@@ -17,7 +13,4 @@ public class Client {
   private long id;
   @Column(name = "name")
   private String name;
-  @OneToMany(mappedBy = "client")
-  @ToString.Exclude
-  private List<Ticket> tickets;
 }

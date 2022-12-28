@@ -36,11 +36,9 @@ public class ClientCrudServiceTest {
     Query<Client> query = session.createQuery("from Client where id = :id", Client.class);
     query.setParameter("id", actualClient.getId());
     Client expectedClient = query.stream().findFirst().orElse(null);
-
     assert expectedClient != null;
     Assertions.assertEquals(expectedClient.getName(), actualClient.getName());
   }
-
   @Test
   public void readByIdTest(){
     List<Client> actualClients = session.createQuery(
@@ -48,7 +46,6 @@ public class ClientCrudServiceTest {
       .setMaxResults(5)
       .list();
 
-    List<Client> testClients;
     for (Client actualClient : actualClients) {
       Client expectedClient = clientCrudService.readById(actualClient.getId());
       Assertions.assertEquals(expectedClient.getId(), actualClient.getId());
@@ -89,16 +86,21 @@ public class ClientCrudServiceTest {
   public void deleteByIdTest(){
     Client actualClient = getRandomClientFromDB();
     long id = actualClient.getId();
-    System.out.println("actualClient = " + actualClient);
 
     clientCrudService.deleteById(id);
 
     Query<Client> query = session.createQuery("from Client where id = :id", Client.class);
     query.setParameter("id", id);
     Client expectedClient = query.stream().findFirst().orElse(null);
-    System.out.println("expectedClient = " + expectedClient);
 
-//    Assertions.assertNull(expectedClient);
+    Assertions.assertNull(expectedClient);
+  }
+
+  @Test
+  public void readAllClientsTest(){
+    List<Client> expectedClients = clientCrudService.readAllClients();
+    List<Client> actualClients = session.createQuery("from Client", Client.class).list();
+    Assertions.assertIterableEquals(expectedClients, actualClients);
   }
 
   private static Client getRandomClientFromDB(){

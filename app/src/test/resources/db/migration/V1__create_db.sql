@@ -16,10 +16,12 @@ CREATE TABLE ticket(
   client_id BIGINT NOT NULL,
   from_planet_id VARCHAR(504) NOT NULL,
   to_planet_id VARCHAR(504) NOT NULL,
-  FOREIGN KEY (client_id)
-    REFERENCES client(id)
-    ON DELETE CASCADE
+  FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE,
+  FOREIGN KEY (from_planet_id) REFERENCES planet(id) ON DELETE CASCADE,
+  FOREIGN KEY (to_planet_id) REFERENCES planet(id) ON DELETE CASCADE
 );
+
+-- Do not touch. This is how I created the ids for the planets
 
 --CREATE TABLE planet(
 --  id VARCHAR(504) NOT NULL
